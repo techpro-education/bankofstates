@@ -1,14 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./header/Header";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div>
+        <Header />
         <Switch>
           <Route path="/login">Login</Route>
-          <Route path="/logout">Logout</Route>
-          <Route path="/header">Header</Route>
+          <Route path="/register">Register</Route>
+          <Route path="/"></Route>
         </Switch>
       </div>
     </Router>

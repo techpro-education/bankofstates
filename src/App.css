@@ -1,3 +1,31 @@
 .pdt-50 {
   padding-top: 50px;
 }
+
+/*********** btn style **************/
+.btn {
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 0px rgba(55, 125, 255, 0.25);
+  height: 30px;
+  line-height: 30px;
+  transition: all 0.3s ease-in;
+  text-align: center;
+}
+.btn.btn-blue {
+  background: #377dff;
+}
+.btn:hover {
+  color: #fff;
+}
+.btn.btn-round {
+  background-color: #377dff;
+  border-radius: 50px;
+}
+.btn:active,
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+  color: #fff;
+}

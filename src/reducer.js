@@ -14,6 +14,8 @@ const reducer = (state, action) => {
       };
     case "REMOVE_TO_CART":
       return { state };
+    case "LOGOUT":
+      return { ...state, userInfo: null };
     default:
       return state;
   }

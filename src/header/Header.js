@@ -60,7 +60,7 @@ function Header() {
                 {userInfo.user.firstName} {userInfo.user.lastName}
               </span>
             </div>
-            <Link to="/" className="header__link">
+            <Link to="/logout" className="header__link">
               <div className="header__option">
                 <span className="header__lineOne">
                   <ExitToApp />

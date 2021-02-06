@@ -7,6 +7,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       return { ...state, userInfo: action.item };
+    case "UPDATE":
+      return { ...state, userInfo: action.item };
     case "ADD_TO_CART":
       return {
         ...state,
@@ -15,7 +17,7 @@ const reducer = (state, action) => {
     case "REMOVE_TO_CART":
       return { state };
     case "LOGOUT":
-      return { ...state, userInfo: null };
+      return { ...state, userInfo: action.item };
     default:
       return state;
   }

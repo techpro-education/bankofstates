@@ -18,7 +18,6 @@ export default function GridItem(props) {
   const { children, ...rest } = props;
   return (
     <Grid item {...rest} className={classes.grid}>
-      {console.log(children)}
       {children}
     </Grid>
   );

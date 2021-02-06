@@ -5,6 +5,8 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import Home from "./home/Home";
 import Login from "./login/Login";
+import Logout from "./logout/Logout";
+import Deposit from "./deposit/Deposit";
 import Register from "./register/Register";
 import Admin from "./admin/Admin";
 import User from "./user/User";
@@ -25,6 +27,12 @@ function App() {
           </Route>
           <Route path="/user">
             <User />
+          </Route>
+          <Route path="/deposit">
+            <Deposit />
+          </Route>
+          <Route path="/logout">
+            <Logout />
           </Route>
           <Route path="/" component={Home} />
         </Switch>

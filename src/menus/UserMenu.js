@@ -25,8 +25,8 @@ const UserMenu = () => {
     history.push("/deposit");
     setAnchorEl(null);
   };
-  const handleWithdrawal = () => {
-    history.push("/withdrawal");
+  const handleWithdraw = () => {
+    history.push("/withdraw");
     setAnchorEl(null);
   };
   const handleTransfer = () => {
@@ -57,7 +57,7 @@ const UserMenu = () => {
       >
         <MenuItem onClick={showDashboard}>Dashboard</MenuItem>
         <MenuItem onClick={handleDeposit}>Deposit</MenuItem>
-        <MenuItem onClick={handleWithdrawal}>Withdrawal</MenuItem>
+        <MenuItem onClick={handleWithdraw}>Withdraw</MenuItem>
         <MenuItem onClick={handleTransfer}>Transfer</MenuItem>
         <MenuItem onClick={handleTransaction}>Transaction</MenuItem>
       </Menu>

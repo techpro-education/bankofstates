@@ -7,6 +7,7 @@ import Home from "./home/Home";
 import Login from "./login/Login";
 import Logout from "./logout/Logout";
 import Deposit from "./deposit/Deposit";
+import Withdraw from "./withdraw/Withdraw";
 import Register from "./register/Register";
 import Admin from "./admin/Admin";
 import User from "./user/User";
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/deposit">
             <Deposit />
+          </Route>
+          <Route path="/withdraw">
+            <Withdraw />
           </Route>
           <Route path="/logout">
             <Logout />

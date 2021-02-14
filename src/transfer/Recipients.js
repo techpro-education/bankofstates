@@ -1,6 +1,6 @@
 import React from "react";
-import { useStateValue } from "../StateProvider";
 import { makeStyles } from "@material-ui/core/styles";
+import { useStateValue } from "../StateProvider";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,29 +11,21 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
 const columns = [
+  { id: "name", label: "Name", minWidth: 170 },
+  { id: "email", label: "Email", minWidth: 200 },
   {
-    id: "time",
-    label: "Date",
+    id: "phone",
+    label: "Contact Number",
     minWidth: 170,
   },
   {
-    id: "description",
-    label: "Comment",
+    id: "bankName",
+    label: "Bank Name",
     minWidth: 170,
   },
   {
-    id: "type",
-    label: "Type",
-    minWidth: 170,
-  },
-  {
-    id: "amount",
-    label: "Amount",
-    minWidth: 170,
-  },
-  {
-    id: "availableBalance",
-    label: "Available Balance",
+    id: "bankNumber",
+    label: "Bank Number",
     minWidth: 170,
   },
 ];
@@ -47,14 +39,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Transactions() {
+export default function Recipients() {
   const [{ userInfo }] = useStateValue();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const rows = userInfo.user.transactions;
-
+  const rows = userInfo.user.recipients;
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -69,7 +59,7 @@ export default function Transactions() {
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow hover>
+            <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -86,12 +76,14 @@ export default function Transactions() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover tabIndex={-1} key={row.code}>
+                  <TableRow hover tabIndex={-1} key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {value}
+                          {column.format && typeof value === "number"
+                            ? column.format(value)
+                            : value}
                         </TableCell>
                       );
                     })}

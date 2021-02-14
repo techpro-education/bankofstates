@@ -71,6 +71,7 @@ const Login = () => {
           service.login(values).then((response) => {
             if (response.status === 200) {
               const userInfo = response.data;
+              console.log("userInfo", userInfo);
               localStorage.setItem(
                 "auth",
                 JSON.stringify({

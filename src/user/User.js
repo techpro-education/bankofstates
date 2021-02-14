@@ -19,37 +19,9 @@ import CardIcon from "../components/Card/CardIcon.js";
 import CardFooter from "../components/Card/CardFooter.js";
 import PlotlyChart from "../chart/PlotlyChart";
 import styles from "../styles/dashboardStyle.js";
+import _ from "lodash";
 const useStyles = makeStyles(styles);
-const barData = [
-  {
-    type: "bar",
-    x: [
-      "1-Jan-2020",
-      "2-Jan-2020",
-      "3-Jan-2020",
-      "4-Jan-2020",
-      "5-Jan-2020",
-      "6-Jan-2020",
-      "7-Jan-2020",
-    ],
-    y: [3000, 5000, 1000, 2000, 10000, 3800, 7000],
-  },
-];
-const scatterData = [
-  {
-    type: "scatter",
-    x: [
-      "1-Jan-2020",
-      "2-Jan-2020",
-      "3-Jan-2020",
-      "4-Jan-2020",
-      "5-Jan-2020",
-      "6-Jan-2020",
-      "7-Jan-2020",
-    ],
-    y: [1000, 500, 300, 200, 100, 3000, 2500],
-  },
-];
+
 const transferData = [
   {
     type: "funnel",
@@ -62,6 +34,40 @@ const User = () => {
   const classes = useStyles();
   const [{ userInfo }] = useStateValue();
   const history = useHistory();
+  const transactions = userInfo.user.transactions;
+  const uniqDates = _.uniq(_.map(transactions, "date")).sort();
+  const depositArray = [];
+  const withdrawalArray = [];
+  uniqDates.forEach(function (key) {
+    const deposits = _.filter(transactions, function (transaction) {
+      return transaction.type === "DEPOSIT" && transaction.date === key;
+    });
+    const withdraws = _.filter(transactions, function (transaction) {
+      return transaction.type === "WITHDRAW" && transaction.date === key;
+    });
+    const depositAmounts = _.map(deposits, "amount");
+    const withdrawAmounts = _.map(withdraws, "amount");
+    const sumOfDeposits = _.sum(depositAmounts);
+    const sumOfWithdraws = _.sum(withdrawAmounts);
+    depositArray.push(sumOfDeposits);
+    withdrawalArray.push(sumOfWithdraws);
+  });
+  const totalDeposit = _.sum(depositArray);
+  const totalWithdrawal = _.sum(withdrawalArray);
+  const depositData = [
+    {
+      type: "bar",
+      x: uniqDates,
+      y: depositArray,
+    },
+  ];
+  const withdrawalData = [
+    {
+      type: "scatter",
+      x: uniqDates,
+      y: withdrawalArray,
+    },
+  ];
   return (
     <div>
       {!userInfo && history.push("/login")}
@@ -94,7 +100,7 @@ const User = () => {
                     <AttachMoney />
                   </CardIcon>
                   <p className={classes.cardCategory}>Deposits</p>
-                  <h3 className={classes.cardTitle}>$ 34245</h3>
+                  <h3 className={classes.cardTitle}>${totalDeposit}</h3>
                 </CardHeader>
                 <CardFooter stats>
                   <div className={classes.stats}>
@@ -111,7 +117,7 @@ const User = () => {
                     <AccountBalanceWallet />
                   </CardIcon>
                   <p className={classes.cardCategory}>Withdrawals</p>
-                  <h3 className={classes.cardTitle}>$30000</h3>
+                  <h3 className={classes.cardTitle}>${totalWithdrawal}</h3>
                 </CardHeader>
                 <CardFooter stats>
                   <div className={classes.stats}>
@@ -146,7 +152,7 @@ const User = () => {
                   <h4 color="white">Deposit Trends</h4>
                 </CardHeader>
                 <CardBody>
-                  <PlotlyChart data={barData} />
+                  <PlotlyChart data={depositData} />
                 </CardBody>
               </Card>
             </GridItem>
@@ -156,7 +162,7 @@ const User = () => {
                   <h4 color="white">Withdrawal Trends</h4>
                 </CardHeader>
                 <CardBody>
-                  <PlotlyChart data={scatterData} />
+                  <PlotlyChart data={withdrawalData} />
                 </CardBody>
               </Card>
             </GridItem>

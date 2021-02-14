@@ -33,8 +33,9 @@ const UserMenu = () => {
     history.push("/transfer");
     setAnchorEl(null);
   };
-  const handleTransaction = () => {
-    history.push("/transaction");
+
+  const addRecipient = () => {
+    history.push("/addRecipient");
     setAnchorEl(null);
   };
   return (
@@ -58,8 +59,8 @@ const UserMenu = () => {
         <MenuItem onClick={showDashboard}>Dashboard</MenuItem>
         <MenuItem onClick={handleDeposit}>Deposit</MenuItem>
         <MenuItem onClick={handleWithdraw}>Withdraw</MenuItem>
+        <MenuItem onClick={addRecipient}>Add Recipient</MenuItem>
         <MenuItem onClick={handleTransfer}>Transfer</MenuItem>
-        <MenuItem onClick={handleTransaction}>Transaction</MenuItem>
       </Menu>
     </div>
   );

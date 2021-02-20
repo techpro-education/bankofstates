@@ -70,8 +70,7 @@ const Login = () => {
         onSubmit={(values, actions) => {
           service.login(values).then((response) => {
             if (response.status === 200) {
-              const userInfo = response.data;
-              console.log("userInfo", userInfo);
+              const userInfo = response.data; 
               localStorage.setItem(
                 "auth",
                 JSON.stringify({

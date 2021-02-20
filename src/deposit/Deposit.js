@@ -44,8 +44,10 @@ const DepositForm = (props) => (
               label="Comment"
               name="comment"
             />
-            {props.isSubmitting && <LinearProgress />}
           </div>
+        </div>
+        <div className="row justify-content-start">
+          <div> {props.isSubmitting && <LinearProgress />}</div>
         </div>
         <div className="row justify-content-start">
           <div className="col-lg-4 text-center p-3">

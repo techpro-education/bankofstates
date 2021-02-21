@@ -12,6 +12,7 @@ import AddRecipient from "./transfer/AddRecipient";
 import Transfer from "./transfer/Transfer";
 import Register from "./register/Register";
 import Admin from "./admin/Admin";
+import UserMgmt from "./admin/UserMgmt";
 import User from "./user/User";
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/admin">
             <Admin />
+          </Route>
+           <Route path="/userMgmt">
+            <UserMgmt />
           </Route>
           <Route path="/user">
             <User />

@@ -24,5 +24,8 @@ class BankService {
   transfer(transerInfo) {
     return axiosInstance.post(BASE_URL + "/account/transfer", transerInfo);
   }
+  getAllUsers() {
+    return axiosInstance.get(BASE_URL + "/user/all");
+  }
 }
 export default new BankService();

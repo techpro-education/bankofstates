@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useStateValue } from "../StateProvider";
 import { useHistory } from "react-router";
 import bankService from "../service/bankService";
-import UserDetails from "./UserDetails";
-import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
+import UserDetails from "./UserDetails"; 
 
 const UserMgmt = () => {
   const [users, setUsers] = useState([]);
